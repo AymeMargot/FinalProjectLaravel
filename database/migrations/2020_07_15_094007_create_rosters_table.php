@@ -19,8 +19,12 @@ class CreateRostersTable extends Migration
             $table->integer('workload');
             $table->time('fromTime');
             $table->time('toTime');
+
+            $table->integer('user_id')->unsigned(); 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
+            
+            $table->integer('staff_id')->unsigned(); 
             $table->foreign('staff_id')->references('id')->on('staff')
                 ->onDelete('cascade');
             $table->timestamps();
