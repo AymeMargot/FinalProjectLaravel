@@ -128,7 +128,7 @@
                             <option value="{{  $make->id }}" class="dropdown-item">{{ $make->name }}</option>
                             @endforeach
                         </select>
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                     </div>
                     <div class="form-group">
                         <label>Engine Type</label>
