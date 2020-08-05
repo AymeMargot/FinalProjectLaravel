@@ -21,10 +21,16 @@ class CreateInvoiceSuppliesTable extends Migration
             $table->integer('discount');
             $table->float('subtotal');
             $table->float('grand_total');
+
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
+
+            $table->integer('invoice_id')->unsigned();
             $table->foreign('invoice_id')->references('id')->on('invoices')
                 ->onDelete('cascade');
+            
+            $table->integer('supply_id')->unsigned();
             $table->foreign('supply_id')->references('id')->on('supplies')
                 ->onDelete('cascade');
             $table->timestamps();
