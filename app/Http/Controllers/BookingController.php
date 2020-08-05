@@ -41,7 +41,7 @@ class BookingController extends Controller
             ->join('vehicles', 'bookings.vehicle_id', '=', 'vehicles.id')
             ->join('users','bookings.user_id','=','users.id')
             ->join('rosters','bookings.roster_id','=','rosters.id')
-            ->join('vehicle_types', 'vehicles.vehicletype', '=', 'vehicle_types.id')
+            ->join('vehicle_types', 'vehicles.vehicleType', '=', 'vehicle_types.id')
             ->join('booking_types', 'bookings.bookingtype_id', '=', 'booking_types.id')
             ->orderBy('bookings.created_at', 'Asc')->paginate(5);  
         $maxservice = $this->getMaxService();
@@ -69,7 +69,7 @@ class BookingController extends Controller
             'vehicle_types.name as typevehicle',
             'booking_types.name As bookingtype'        )
             ->join('vehicles', 'bookings.vehicle_id', '=', 'vehicles.id')
-            ->join('vehicle_types', 'vehicles.vehicletype', '=', 'vehicle_types.id')
+            ->join('vehicle_types', 'vehicles.vehicleType', '=', 'vehicle_types.id')
             ->join('booking_types', 'bookings.bookingtype_id', '=', 'booking_types.id')
             ->where('bookings.user_id','=', auth()->user()->id)->orderBy('bookings.created_at', 'desc')->limit(1)->get();
       
@@ -193,7 +193,7 @@ class BookingController extends Controller
             ->join('vehicles', 'bookings.vehicle_id', '=', 'vehicles.id')
             ->join('users','bookings.user_id','=','users.id')
             ->join('rosters','bookings.roster_id','=','rosters.id')
-            ->join('vehicle_types', 'vehicles.vehicletype', '=', 'vehicle_types.id')
+            ->join('vehicle_types', 'vehicles.vehicleType', '=', 'vehicle_types.id')
             ->join('booking_types', 'bookings.bookingtype_id', '=', 'booking_types.id')
             ->whereBetween('bookings.date', [$from, $to])->paginate(5);      
             
