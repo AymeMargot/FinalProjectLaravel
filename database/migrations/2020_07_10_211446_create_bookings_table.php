@@ -19,13 +19,21 @@ class CreateBookingsTable extends Migration
             $table->string('description');
             $table->date('date');
             $table->string('status');
-            $table->string('diagnosis');            
+            $table->string('diagnosis'); 
+
+            $table->integer('user_id')->unsigned();           
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
+
+            $table->integer('vehicle_id')->unsigned(); 
             $table->foreign('vehicle_id')->references('id')->on('vehicles')
                 ->onDelete('cascade');
+
+            $table->integer('roster_id')->unsigned(); 
             $table->foreign('roster_id')->references('id')->on('rosters')
                 ->onDelete('cascade');
+                
+            $table->integer('bookingtype_id')->unsigned(); 
             $table->foreign('bookingtype_id')->references('id')->on('booking_types')
                 ->onDelete('cascade');
             $table->timestamps();
