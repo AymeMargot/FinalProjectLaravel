@@ -20,6 +20,8 @@ class CreateSuppliesTable extends Migration
             $table->string('photo');
             $table->float('price');
             $table->integer('stock');
+            
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
             $table->timestamps();
