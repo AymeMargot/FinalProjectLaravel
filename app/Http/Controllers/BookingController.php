@@ -71,9 +71,9 @@ class BookingController extends Controller
             ->join('vehicles', 'bookings.vehicle_id', '=', 'vehicles.id')
             ->join('vehicle_types', 'vehicles.vehicleType', '=', 'vehicle_types.id')
             ->join('booking_types', 'bookings.bookingtype_id', '=', 'booking_types.id')
-            ->where('bookings.user_id','=', auth()->user()->id)->orderBy('bookings.created_at', 'desc')->limit(1)->get();
+            ->where('bookings.user_id','=', auth()->id())->orderBy('bookings.created_at', 'desc')->limit(1)->get();
       
-        $data['vehicles'] = Vehicle::select('id','name','license')->where('user_id', auth()->user()->id)->get();
+        $data['vehicles'] = Vehicle::select('id','name','license')->where('user_id', auth()->id())->get();
         $data['booking_types'] = BookingType::select('id', 'name','description','price')->get();
         $data['vehicle_types'] = Vehicle_type::select('id', 'name')->get();
         $data['makes'] = Brand::select('id', 'name')->get();
@@ -151,7 +151,7 @@ class BookingController extends Controller
             return redirect('bookings/create')->with('error','Sorry, there is no staff available at the moment, please try with another date');
         
         $bookings = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'status' => 'BOOKED',
             'bookingtype_id' => $request->get('BookingType'),
             'description' => $request->get('Description'),
