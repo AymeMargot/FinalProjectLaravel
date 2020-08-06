@@ -116,7 +116,9 @@ class LoadDataController extends Controller
                 'name'=> $name,
                 'description'=> $desc, 
                 'price'=> $price, 
-                'value'=> $value,             
+                'value'=> $value,
+                'periordStart'=> date("Y-m-d"),
+                'periordEnd'=> date("Y-m-d"),             
                 'created_at'=>now()->toDateTimeString(),
                 'updated_at'=>now()->toDateTimeString(),
                 'user_id' =>1
