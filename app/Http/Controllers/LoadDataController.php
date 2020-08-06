@@ -35,7 +35,8 @@ class LoadDataController extends Controller
                 'offer'=> 'NO',
                 'photo'=> '',
                 'created_at'=>now()->toDateTimeString(),
-                'updated_at'=>now()->toDateTimeString()
+                'updated_at'=>now()->toDateTimeString(),
+                'user_id' =>1
             ];
         }
 
