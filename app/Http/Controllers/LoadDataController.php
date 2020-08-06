@@ -7,9 +7,11 @@ use App\Role;
 use App\Setting;
 use App\Supply;
 use App\User;
+use App\Vehicle_type;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use LengthException;
 
 class LoadDataController extends Controller
 {
@@ -26,7 +28,7 @@ class LoadDataController extends Controller
     public function load(){
 
         $data = [];
-        for($i = 0;$i < 50; $i++){
+       /* for($i = 0;$i < 50; $i++){
             $name = Str::random(30);
             $data[]=[
                 'name'=> $name,
@@ -42,6 +44,21 @@ class LoadDataController extends Controller
 
         foreach($data as $dat){
             Supply::insert($dat);
+        }
+        */
+        $array = ['Motorbikes','Car','Van','Small Buses','Others'];
+        for($i = 0;$i < count($array) ; $i++){
+            $name = $array[$i];
+            $data[]=[
+                'name'=> $name,             
+                'created_at'=>now()->toDateTimeString(),
+                'updated_at'=>now()->toDateTimeString(),
+                'user_id' =>1
+            ];
+        }
+
+        foreach($data as $dat){
+            Vehicle_type::insert($dat);
         }
     }
 
