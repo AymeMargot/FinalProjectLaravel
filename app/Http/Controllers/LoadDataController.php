@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\accessory;
 use App\BookingType;
 use App\Brand;
 use App\loadData;
@@ -100,7 +101,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Vehicle_Part::insert($dat);
         }
-        */
+        
         $array = ['Annual Service','Major Service','Repair / Fault and'];
         $prices = [189,200,345];
         $values = [1,2,1];
@@ -127,6 +128,23 @@ class LoadDataController extends Controller
 
         foreach($data as $dat){
             BookingType::insert($dat);
+        }
+    */
+        for($i = 0;$i < 50; $i++){
+            $name = Str::random(30);
+            $data[]=[
+                'name'=> $name,
+                'price'=> rand(11,350),
+                'stock'=> rand(100,500),        
+                'photo'=> '',
+                'created_at'=>now()->toDateTimeString(),
+                'updated_at'=>now()->toDateTimeString(),
+                'user_id' =>1
+            ];
+        }
+
+        foreach($data as $dat){
+            accessory::insert($dat);
         }
     }
 
