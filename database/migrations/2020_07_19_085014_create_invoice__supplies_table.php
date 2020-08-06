@@ -14,11 +14,12 @@ class CreateInvoiceSuppliesTable extends Migration
     public function up()
     {
         Schema::create('invoice__supplies', function (Blueprint $table) {
+           
             $table->increments('id');
             $table->string('item');
             $table->integer('qty');
             $table->float('price');
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
             $table->float('subtotal');
             $table->float('grand_total');
 
