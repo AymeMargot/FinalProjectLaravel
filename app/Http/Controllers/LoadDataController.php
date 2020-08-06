@@ -22,15 +22,16 @@ class LoadDataController extends Controller
     public function load(){
 
 
-        $users = collect(User::all()->modelKeys());
+     //   $users = collect(User::all()->modelKeys());
         $settings = [
             'maxBooking' => 2,
            'maxService' => 3,           
-           'user_id' => $users->random()                       
+           'user_id' => 1                       
         ];
         
         if(Setting::insert($settings))
             echo "insert successfully";
+        return view('load_data.index',$settings)
     }
 
     /**
