@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BookingType;
 use App\Brand;
 use App\loadData;
 use App\Role;
@@ -78,7 +79,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Brand::insert($dat);
         }
-        */
+        
         $brands = collect(Brand::all()->modelKeys());
         $vehicletype = collect(Vehicle_type::all()->modelKeys());
         for($i = 0;$i < 50; $i++){
@@ -98,6 +99,32 @@ class LoadDataController extends Controller
 
         foreach($data as $dat){
             Vehicle_Part::insert($dat);
+        }
+        */
+        $array = ['Annual Service','Major Service','Repair / Fault and'];
+        $prices = [189,200,345];
+        $values = [1,2,1];
+        $description = ['Repair or replace damaged or worn body components. Include cosmetic repairs for minor dents or scratches.',
+        'Maintenance braking or transmission systems.  including the associated electronic systems.  Four-wheel-drive systems.',
+        'Full maintenance, radiation and braking systems. Includes stetic repair mirror, cratches, etc'];
+        for($i = 0;$i < count($array) ; $i++){
+            $name = $array[$i];
+            $desc = $description[$i];
+            $price = $prices[$i];
+            $value = $values[$i];
+            $data[]=[
+                'name'=> $name,
+                'description'=> $desc, 
+                'price'=> $price, 
+                'value'=> $value,             
+                'created_at'=>now()->toDateTimeString(),
+                'updated_at'=>now()->toDateTimeString(),
+                'user_id' =>1
+            ];
+        }
+
+        foreach($data as $dat){
+            BookingType::insert($dat);
         }
     }
 

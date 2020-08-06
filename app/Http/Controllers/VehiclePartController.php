@@ -36,7 +36,9 @@ class VehiclePartController extends Controller
         )
         ->join('brands', 'vehicle__parts.brand_id', '=', 'brands.id')
         ->join('vehicle_types', 'vehicle__parts.vehicletype_id', '=', 'vehicle_types.id')
-        ->where('vehicle__parts.name','like','%'.$find.'%')->paginate(5);
+        ->where('vehicle__parts.name','like','%'.$find.'%')
+        ->orderBy('vehicle__parts.id', 'asc')
+        ->paginate(5);
     $data['vehicle_types']=Vehicle_type::all();
     $data['makes']=Brand::all();
     return view('vehicle_parts.index', $data);
@@ -72,6 +74,7 @@ class VehiclePartController extends Controller
             )
             ->join('brands', 'vehicle__parts.brand_id', '=', 'brands.id')
             ->join('vehicle_types', 'vehicle__parts.vehicletype_id', '=', 'vehicle_types.id')
+            ->orderBy('vehicle__parts.id', 'asc')
             ->paginate(5);
         $data['vehicle_types']=Vehicle_type::all();
         $data['makes']=Brand::all();
