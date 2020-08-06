@@ -148,15 +148,14 @@ class LoadDataController extends Controller
             accessory::insert($dat);
         }
         */
-        $min = strtotime("30 years ago");
-        $max = strtotime("20 years ago");
+        $min = strtotime("jan 1st -47 years");
+        $max = strtotime("dec 31st -18 years");
 
         for($i = 0;$i < 30; $i++){
             $name = Str::random(30);
             $lastname = Str::random(30);
-            $string = Str::random(500);
-            $rand_time = mt_rand($min, $max);
-            $birth_date = date('%m/%d/%Y', $rand_time);
+            $time = rand($min,$max);
+            $birth_date = date("Y-m-d",$time);
             $data[]=[
                 'name'=> $name,
                 'lastname'=> $lastname,
