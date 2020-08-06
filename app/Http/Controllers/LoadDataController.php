@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\loadData;
+use App\Role;
 use App\Setting;
 use App\User;
+use DateTime;
 use Illuminate\Http\Request;
 
 class LoadDataController extends Controller
@@ -24,15 +26,14 @@ class LoadDataController extends Controller
 
      //   $users = collect(User::all()->modelKeys());
         $settings = [
-            'maxBooking' => 2,
-           'maxService' => 3,           
-           'user_id' => 1,
-           'timeStart' => date("H:m:s"),
-           'timeEnd' => date("H:m:s")                     
+            'name' => 'admin'                         
         ];
         
-        if(Setting::insert($settings))
+        if(Role::insert($settings))
             echo "insert successfully";
+        
+
+       // User::find(1)->assignRole(1);
         return view('load_data.index',$settings);
     }
 
