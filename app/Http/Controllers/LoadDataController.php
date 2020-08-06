@@ -26,7 +26,9 @@ class LoadDataController extends Controller
         $settings = [
             'maxBooking' => 2,
            'maxService' => 3,           
-           'user_id' => 1                       
+           'user_id' => 1,
+           'timeStart' => date("H:m:s"),
+           'timeEnd' => date("H:m:s")                     
         ];
         
         if(Setting::insert($settings))
