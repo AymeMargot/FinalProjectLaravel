@@ -32,7 +32,7 @@ class LoadDataController extends Controller
 
     public function load(){
 
-        $data=[
+    /*        $data=[
             'timeStart'=>date("H:m:s"),
             'timeEnd'=>date("H:m:s"),
             'maxBooking'=>2,
@@ -42,7 +42,7 @@ class LoadDataController extends Controller
             'updated_at'=>now()->toDateTimeString(),
         ];
         Setting::insert($data);
-
+        */
         $data = [];
         for($i = 0;$i < 50; $i++){
             $name = Str::random(30);
@@ -54,7 +54,7 @@ class LoadDataController extends Controller
                 'photo'=> '',
                 'created_at'=>now()->toDateTimeString(),
                 'updated_at'=>now()->toDateTimeString(),
-                'user_id' =>1
+                'user_id' =>2
             ];
         }
 
@@ -69,7 +69,7 @@ class LoadDataController extends Controller
                 'name'=> $name,             
                 'created_at'=>now()->toDateTimeString(),
                 'updated_at'=>now()->toDateTimeString(),
-                'user_id' =>1
+                'user_id' =>2
             ];
         }
 
@@ -85,7 +85,7 @@ class LoadDataController extends Controller
                 'name'=> $name,             
                 'created_at'=>now()->toDateTimeString(),
                 'updated_at'=>now()->toDateTimeString(),
-                'user_id' =>1
+                'user_id' =>2
             ];
         }
 
@@ -106,7 +106,7 @@ class LoadDataController extends Controller
                 'photo'=> '',
                 'created_at'=>now()->toDateTimeString(),
                 'updated_at'=>now()->toDateTimeString(),
-                'user_id' =>1
+                'user_id' =>2
             ];
         }
 
@@ -134,7 +134,7 @@ class LoadDataController extends Controller
                 'periordEnd'=> date("Y-m-d"),             
                 'created_at'=>now()->toDateTimeString(),
                 'updated_at'=>now()->toDateTimeString(),
-                'user_id' =>1
+                'user_id' =>2
             ];
         }
 
@@ -151,7 +151,7 @@ class LoadDataController extends Controller
                 'photo'=> '',
                 'created_at'=>now()->toDateTimeString(),
                 'updated_at'=>now()->toDateTimeString(),
-                'user_id' =>1
+                'user_id' =>2
             ];
         }
 
