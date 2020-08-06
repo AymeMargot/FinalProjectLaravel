@@ -59,7 +59,7 @@
         </div>
     </div>
     @else
-        <p class="bg-danger text-white p-1">This user has to be registered as staff</p>
+    <div class="alert alert-danger" role="alert">You should be registered as staff</div>
     @endif
     <br>
     @if(!empty($rosters))
@@ -86,7 +86,7 @@
         @endforeach
     </table>
     @else
-        <p class="bg-danger text-white p-1">No Roster assigned, please contact your supervisor</p>
+    <div class="alert alert-danger" role="alert">No Roster assigned, please contact your supervisor</div>
     @endif
 </div>
 @endsection
