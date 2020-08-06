@@ -79,7 +79,7 @@ class RosterController extends Controller
                 'staff_id' => $request->get('staff_id'),
                 'fromTime' => $request->get('FromTime'),
                 'toTime' => $request->get('ToTime'),
-                'Date' => $dayAfter
+                'date' => $dayAfter
             ];
 
             $dayAfter = Carbon::createFromFormat('Y-m-d', $dayAfter)->addDays(1)->format('Y-m-d');
