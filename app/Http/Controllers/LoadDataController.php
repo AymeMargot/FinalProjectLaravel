@@ -33,8 +33,9 @@ class LoadDataController extends Controller
             echo "insert successfully";
         
 */
+        $settings = [];
         Role::find(3)->delete();
-        return view('load_data.index','');
+        return view('load_data.index',$settings);
     }
 
     /**
