@@ -31,32 +31,34 @@
     </div>
     @endcan
     <br>
+    @foreach($users as $user)
     <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4">
                     <label class="text-danger">Name</label>
-                    <label>{{$users->name}} {{$users->lastname}}</label>
+                    <label>{{ $user->name }} {{ $user->lastname }}</label>
                 </div>
                 <div class="col-sm-4">
                     <label class="text-danger">Address</label>
-                    <label>{{$users->address}}</label>
+                    <label>{{ $user->address }}</label>
                 </div>
                 <div class="col-sm-4"></div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <label class="text-danger">Pps Number</label>
-                    <label>{{$users->pps}}</label>
+                    <label>{{ $user->pps }}</label>
                 </div>
                 <div class="col-sm-4">
                     <label class="text-danger">Gnb Number</label>
-                    <label>{{$users->gnb}}</label>
+                    <label>{{ $user->gnb }}</label>
                 </div>
                 <div class="col-sm-4"></div>
             </div>
         </div>
     </div>
+    @endforeach
     <br>
     <table class="table table-striped table-hover table-bordered">
         <thead>

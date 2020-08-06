@@ -206,15 +206,11 @@ class BookingController extends Controller
      return view('bookings.index',$data);   
     }
  
-    public function updateRoster($roster,$type,$action){
-        echo '<BR>roster'.$roster;
-        echo '<BR>type'.$type;
-        echo '<BR>action'.$action;
+    public function updateRoster($roster,$type,$action){   
         
         $value = BookingType::where('id','=',$type)->first()->value;
         $valuenew = Roster::where('id','=',$roster)->first()->workload;
-        echo '<BR>value'.$value;
-        echo '<BR>valuenew'.$valuenew;
+ 
         if($action == "add")      
             $valueUpdate = $value + $valuenew;
         else
@@ -271,11 +267,7 @@ class BookingController extends Controller
         $sql = Booking::where('id','=',$request->booking_id)->first();
         $bookingtype_id = $sql->bookingtype_id;
         $roster_id = $sql->roster_id;
-
-        echo 'bookingtype_id old'.$bookingtype_id; 
-        echo 'bookingtype_id new'.$request->get('bookingtype_id');
-        echo 'roster old'.$roster_id; 
-        echo 'roster new'.$request->get('roster_id');  
+ 
         if(($request->get('bookingtype_id')!= $sql->bookingtype_id) || ($request->get('roster_id')!= $sql->roster_id)){          
             $this->updateRoster($sql->roster_id,$sql->bookingtype_id,'subtract');
             $this->updateRoster($request->get('roster_id'),$request->get('bookingtype_id'),'add');
@@ -290,7 +282,7 @@ class BookingController extends Controller
         $diagnosis = "";
         if($request->get('Diagnosis')!="")
             $diagnosis = $request->get('Diagnosis');
-            
+
         if($sql){
             $bookings = [            
                 'bookingtype_id' => $bookingtype_id,
@@ -300,8 +292,11 @@ class BookingController extends Controller
                 'roster_id' => $roster_id           
             ];
          //   return response()->json($bookings);
-            if(Booking::where('id','=',$sql->id)->update($bookings))
+            if(Booking::where('id','=',$sql->id)->update($bookings)){
+               // if($request->get('status_id')=='COLLECTED' || $request->get('status_id')=='FIXED' || $request->get('status_id')=='UNREPAIRABLE')
+                 //   $this->updateRoster($roster_id,$bookingtype_id,'subtract');
                 return redirect('bookings')->with('success','Book updated successfuly');
+            }
             else 
                 return redirect('bookings')->with('error','Something is going wrong, please try again');
         }
