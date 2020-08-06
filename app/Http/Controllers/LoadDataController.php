@@ -161,7 +161,7 @@ class LoadDataController extends Controller
                 'name'=> $name,
                 'lastname'=> $lastname,
                 'gnb'=> rand(2343323,5067876),
-                'pps'=> $string + rand(2345,7654),        
+                'pps'=> rand(2345,7654),        
                 'position'=> 2,
                 'showed'=> 'NO',
                 'address'=>'',
