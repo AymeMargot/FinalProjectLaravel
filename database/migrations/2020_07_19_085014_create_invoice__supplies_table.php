@@ -13,7 +13,7 @@ class CreateInvoiceSuppliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_supplies', function (Blueprint $table) {
+        Schema::create('invoice__supplies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('item');
             $table->integer('qty');
