@@ -31,7 +31,7 @@ class LoadDataController extends Controller
         
         if(Setting::insert($settings))
             echo "insert successfully";
-        return view('load_data.index',$settings)
+        return view('load_data.index',$settings);
     }
 
     /**
