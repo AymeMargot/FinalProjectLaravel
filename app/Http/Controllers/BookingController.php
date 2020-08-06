@@ -156,7 +156,8 @@ class BookingController extends Controller
             'bookingtype_id' => $request->get('BookingType'),
             'description' => $request->get('Description'),
             'roster_id'=> $roster,
-            'vehicle_id' => $request->get('Vehicle'),            
+            'vehicle_id' => $request->get('Vehicle'), 
+            'diagnosis' => '',            
             'date' => $request->get('Date')          
         ];
         //return response()->json($bookings);
