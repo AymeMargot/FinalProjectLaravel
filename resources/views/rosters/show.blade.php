@@ -31,35 +31,38 @@
     </div>
     @endcan
     <br>
-    @foreach($users as $user)
+    @if(!empty($users))
     <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4">
                     <label class="text-danger">Name</label>
-                    <label>{{ $user->name }} {{ $user->lastname }}</label>
+                    <label>{{ $users->name }} {{ $users->lastname }}</label>
                 </div>
                 <div class="col-sm-4">
                     <label class="text-danger">Address</label>
-                    <label>{{ $user->address }}</label>
+                    <label>{{ $users->address }}</label>
                 </div>
                 <div class="col-sm-4"></div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <label class="text-danger">Pps Number</label>
-                    <label>{{ $user->pps }}</label>
+                    <label>{{ $users->pps }}</label>
                 </div>
                 <div class="col-sm-4">
                     <label class="text-danger">Gnb Number</label>
-                    <label>{{ $user->gnb }}</label>
+                    <label>{{ $users->gnb }}</label>
                 </div>
                 <div class="col-sm-4"></div>
             </div>
         </div>
     </div>
-    @endforeach
+    @else
+        <p class="bg-danger text-white p-1">This user has to be registered as staff</p>
+    @endif
     <br>
+    @if(!empty($rosters))
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr class="text-primary">
@@ -82,6 +85,8 @@
         </tr>
         @endforeach
     </table>
-
+    @else
+        <p class="bg-danger text-white p-1">No Roster assigned, please contact your supervisor</p>
+    @endif
 </div>
 @endsection

@@ -104,16 +104,15 @@ class RosterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show()
-    {
-        echo "user".auth()->id();
+    {        
         $data['users'] = Staff::where('id','=',auth()->id())->first();
         $data['rosters'] = Roster::select('rosters.*', 'bookings.id as book', 'bookings.description', 'bookings.status')
             ->leftJoin('bookings', 'rosters.id', '=', 'bookings.roster_id')
             ->where('rosters.staff_id', '=', auth()->id())
             ->get();
         $data['staff'] = Staff::all();
-        return Response()->json($data); 
-      //  return view('rosters.show', $data);
+        //return Response()->json($data); 
+        return view('rosters.show', $data);
     }
 
     public function UserSearch(Request $rosters)
