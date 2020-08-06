@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\loadData;
 use App\Role;
 use App\Setting;
@@ -45,7 +46,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Supply::insert($dat);
         }
-        */
+        
         $array = ['Motorbikes','Car','Van','Small Buses','Others'];
         for($i = 0;$i < count($array) ; $i++){
             $name = $array[$i];
@@ -59,6 +60,22 @@ class LoadDataController extends Controller
 
         foreach($data as $dat){
             Vehicle_type::insert($dat);
+        }
+        */
+
+        $array = ['Honda','Toyota','Audi','Kia','Hyundai','Suzuki','Jeep','Ford','Mercedes Benz','Nissan','Mitsubishi','Mazda','Acura','Other'];
+        for($i = 0;$i < count($array) ; $i++){
+            $name = $array[$i];
+            $data[]=[
+                'name'=> $name,             
+                'created_at'=>now()->toDateTimeString(),
+                'updated_at'=>now()->toDateTimeString(),
+                'user_id' =>1
+            ];
+        }
+
+        foreach($data as $dat){
+            Brand::insert($dat);
         }
     }
 
