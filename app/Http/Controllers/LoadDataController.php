@@ -177,7 +177,8 @@ class LoadDataController extends Controller
             Staff::insert($dat);
         }
         */
-        Staff::truncate();
+        User::find(3)->assignRole(1);
+        User::find(2)->assignRole(1);
     }
 
     /**
