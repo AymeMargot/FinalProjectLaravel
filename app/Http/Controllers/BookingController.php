@@ -286,12 +286,16 @@ class BookingController extends Controller
         
         if($request->get('roster_id') != $sql->roster_id)
             $roster_id = $request->get('roster_id');
-        echo 'bookingtype_idddddd'.$bookingtype_id;  
+        
+        $diagnosis = "";
+        if($request->get('Diagnosis')!="")
+            $diagnosis = $request->get('Diagnosis');
+            
         if($sql){
             $bookings = [            
                 'bookingtype_id' => $bookingtype_id,
                 'description'=> $request->get('Description'),
-                'diagnosis' => $request->get('Diagnosis'),
+                'diagnosis' => $diagnosis,
                 'status' => $request->get('status_id'),
                 'roster_id' => $roster_id           
             ];
