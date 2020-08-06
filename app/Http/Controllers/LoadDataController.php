@@ -26,14 +26,14 @@ class LoadDataController extends Controller
 
      //   $users = collect(User::all()->modelKeys());
         $settings = [
-            'name' => 'mechanic'                         
+            'name' => 'assistant'                         
         ];
         
         if(Role::insert($settings))
             echo "insert successfully";
         
 
-       // User::find(1)->assignRole(1);
+        User::find(1)->assignRole(1);
         return view('load_data.index',$settings);
     }
 
