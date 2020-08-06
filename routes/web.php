@@ -56,7 +56,7 @@ Route::resource('/makes', 'BrandController');
 Route::get('/makeSearch', 'BrandController@search');
 Route::delete('/deleteAll','BrandController@deleteAll');
 
-Route::resource('/loadData', 'LoadDataController@load');
+Route::get('/loadData', 'LoadDataController@load');
 //========================================================================================================
 
 Route::get('/singleAccessory/{id}', ['as' => 'id', 'uses' => 'AccessoryController@single']);
