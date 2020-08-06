@@ -8,6 +8,7 @@ use App\Role;
 use App\Setting;
 use App\Supply;
 use App\User;
+use App\Vehicle_Part;
 use App\Vehicle_type;
 use DateTime;
 use Illuminate\Http\Request;
@@ -61,7 +62,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Vehicle_type::insert($dat);
         }
-        */
+        
 
         $array = ['Honda','Toyota','Audi','Kia','Hyundai','Suzuki','Jeep','Ford','Mercedes Benz','Nissan','Mitsubishi','Mazda','Acura','Other'];
         for($i = 0;$i < count($array) ; $i++){
@@ -76,6 +77,27 @@ class LoadDataController extends Controller
 
         foreach($data as $dat){
             Brand::insert($dat);
+        }
+        */
+        $brands = collect(Brand::all()->modelKeys());
+        $vehicletype = collect(Vehicle_type::all()->modelKeys());
+        for($i = 0;$i < 50; $i++){
+            $name = Str::random(30);
+            $data[]=[
+                'name'=> $name,
+                'brand_id'=> $brands->random(),
+                'stock'=> rand(100,500),
+                'price'=> rand(11,300),
+                'vehicletype_id'=> $vehicletype->random(),
+                'photo'=> '',
+                'created_at'=>now()->toDateTimeString(),
+                'updated_at'=>now()->toDateTimeString(),
+                'user_id' =>1
+            ];
+        }
+
+        foreach($data as $dat){
+            Vehicle_Part::insert($dat);
         }
     }
 
