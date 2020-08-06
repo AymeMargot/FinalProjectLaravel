@@ -34,7 +34,8 @@ class LoadDataController extends Controller
         
 */
         $settings = [];
-        Role::find(3)->delete();
+      
+        Role::findOrfail(3)->delete();
         return view('load_data.index',$settings);
     }
 
