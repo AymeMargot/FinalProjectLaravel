@@ -1,5 +1,7 @@
 <?php
 
+use App\Setting;
+use App\User;
 use Illuminate\Database\Seeder;#
 use Illuminate\Support\Facades\DB;
 
@@ -12,10 +14,17 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('settings')->insert([
-            'maxBooking'=>2,
-            'maxService'=>3,
-            'user_id'=>1
-        ]);
+       $users = collect(User::all()->modelKeys());
+       $data  = [];
+       $data[] = [
+           'maxBooking' => 2,
+           'maxService' => 3,           
+           'user_id' => $users->random()
+       ];
+
+       foreach($data as $set){
+            Setting::insert($set);
+       }
+       
     }
 }
