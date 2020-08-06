@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\accessory;
 use App\BookingType;
 use App\Brand;
+use App\Engine;
 use App\loadData;
 use App\Role;
 use App\Setting;
@@ -61,7 +62,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Supply::insert($dat);
         }
-        */ 
+        
         $data = [];
         $array = ['Motorbikes','Car','Van','Small Buses','Others'];
         for($i = 0;$i < count($array) ; $i++){
@@ -194,6 +195,21 @@ class LoadDataController extends Controller
         */
       //  User::find(3)->assignRole(1);
       //  User::find(2)->assignRole(1);
+      $array = ['Diesel','Petrol','Hybrid','Electric','Other'];
+      for($i = 0;$i < count($array) ; $i++){
+          $name = $array[$i];     
+          $data[]=[
+              'name'=> $name,
+              'created_at'=>now()->toDateTimeString(),
+              'updated_at'=>now()->toDateTimeString(),
+              'user_id' =>2
+          ];
+      }
+
+      foreach($data as $dat){
+          Engine::insert($dat);
+      }
+      
     }
 
     /**
