@@ -8,6 +8,7 @@ use App\Brand;
 use App\loadData;
 use App\Role;
 use App\Setting;
+use App\Staff;
 use App\Supply;
 use App\User;
 use App\Vehicle_Part;
@@ -147,6 +148,35 @@ class LoadDataController extends Controller
             accessory::insert($dat);
         }
         */
+        $min = strtotime("30 years ago");
+        $max = strtotime("20 years ago");
+
+        for($i = 0;$i < 30; $i++){
+            $name = Str::random(30);
+            $lastname = Str::random(30);
+            $string = Str::random(500);
+            $rand_time = mt_rand($min, $max);
+            $birth_date = date('%m/%d/%Y', $rand_time);
+            $data[]=[
+                'name'=> $name,
+                'lastname'=> $lastname,
+                'gnb'=> rand(2343323,5067876),
+                'pps'=> $string + rand(2345,7654),        
+                'position'=> 2,
+                'showed'=> 'NO',
+                'address'=>'',
+                'birthday'=>$birth_date,
+                'gender'=>'Female',
+                'civilStatus'=>'Single',
+                'created_at'=>now()->toDateTimeString(),
+                'updated_at'=>now()->toDateTimeString(),
+                'user_id' =>1
+            ];
+        }
+
+        foreach($data as $dat){
+            Staff::insert($dat);
+        }
     }
 
     /**
