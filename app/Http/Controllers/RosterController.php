@@ -112,7 +112,8 @@ class RosterController extends Controller
             ->where('rosters.staff_id', '=', $user)
             ->get();
         $data['staff'] = Staff::all();
-        return view('rosters.show', $data);
+        return Response()->json($data); 
+      //  return view('rosters.show', $data);
     }
 
     public function UserSearch(Request $rosters)
