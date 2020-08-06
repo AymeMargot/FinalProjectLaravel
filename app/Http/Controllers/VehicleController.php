@@ -44,14 +44,14 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+       /* $this->validate($request,[
             'VehicleType' => 'required',  
             'Engine' => 'required', 
             'Brand' => 'required',
             'License' => 'required|unique:vehicles',    
             'Name' => 'required' 
         ]);
-
+        */
         $vehicles = $request->except(['_token']);
         if(Vehicle::insert( $vehicles))
             return redirect('bookings/create')->with('success','Vehicle added successfuly');
