@@ -52,7 +52,15 @@ class VehicleController extends Controller
             'Name' => 'required' 
         ]);
         */
-        $vehicles = $request->except(['_token']);
+        $vehicles =[
+            'license' => $request->get('License'),
+            'vehicleType' => $request->get('VehicleType'),
+            'name' => $request->get('Name'),
+            'brand' => $request->get('Brand'),
+            'engine' => $request->get('Engine'),
+            'user' => auth()->id()
+        ];
+       // $vehicles = $request->except(['_token']);
         if(Vehicle::insert( $vehicles))
             return redirect('bookings/create')->with('success','Vehicle added successfuly');
          else
