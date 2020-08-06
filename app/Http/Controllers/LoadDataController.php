@@ -26,7 +26,7 @@ class LoadDataController extends Controller
 
      //   $users = collect(User::all()->modelKeys());
         $settings = [
-            'name' => 'admin'                         
+            'name' => 'mechanic'                         
         ];
         
         if(Role::insert($settings))
