@@ -50,9 +50,9 @@
 						<td>{{ $invoice->customer}}</td>
 						<td>{{ $invoice->customer_address}}</td>
 						<td>{{ $invoice->title}}</td>
-						<td>{{ $invoice->subtotal}}€</td>
-						<td>{{ $invoice->discount}}%</td>
 						<td>{{ $invoice->grand_total}}€</td>
+						<td>{{ $invoice->discount}}%</td>
+						<td>{{ $invoice->subtotal}}€</td>
 						<td>
 							<!-- button edit-->
 							<a href="{{ url('/invoices/'.$invoice->id.'/edit') }}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
