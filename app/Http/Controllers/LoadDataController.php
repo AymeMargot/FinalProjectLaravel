@@ -147,7 +147,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             accessory::insert($dat);
         }
-        */
+        
         $min = strtotime("jan 1st -47 years");
         $max = strtotime("dec 31st -18 years");
 
@@ -176,6 +176,8 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Staff::insert($dat);
         }
+        */
+        Staff::truncate();
     }
 
     /**
