@@ -129,7 +129,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             BookingType::insert($dat);
         }
-    */
+    
         for($i = 0;$i < 50; $i++){
             $name = Str::random(30);
             $data[]=[
@@ -146,6 +146,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             accessory::insert($dat);
         }
+        */
     }
 
     /**
