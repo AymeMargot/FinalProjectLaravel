@@ -32,8 +32,19 @@ class LoadDataController extends Controller
 
     public function load(){
 
+        $data=[
+            'timeStart'=>date("H:m:s"),
+            'timeEnd'=>date("H:m:s"),
+            'maxBooking'=>2,
+            'maxService'=>3,
+            'user_id'=>2,
+            'created_at'=>now()->toDateTimeString(),
+            'updated_at'=>now()->toDateTimeString(),
+        ];
+        Setting::insert($data);
+
         $data = [];
-       /* for($i = 0;$i < 50; $i++){
+        for($i = 0;$i < 50; $i++){
             $name = Str::random(30);
             $data[]=[
                 'name'=> $name,
@@ -147,7 +158,7 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             accessory::insert($dat);
         }
-        
+       /* 
         $min = strtotime("jan 1st -47 years");
         $max = strtotime("dec 31st -18 years");
 
@@ -177,8 +188,8 @@ class LoadDataController extends Controller
             Staff::insert($dat);
         }
         */
-        User::find(3)->assignRole(1);
-        User::find(2)->assignRole(1);
+      //  User::find(3)->assignRole(1);
+      //  User::find(2)->assignRole(1);
     }
 
     /**
