@@ -99,7 +99,7 @@ class InvoiceController extends Controller
         $price = $sqltypebook->price;  
 
         $invoices = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'booking' => $request->get('Booking'),
             'title' => $request->get('Description'),    
             'discount' => 0,
@@ -113,7 +113,7 @@ class InvoiceController extends Controller
         if(Invoice::insert($invoices)){                     
             $id = Invoice::all()->last()->id;           
              $invoice_bookings = [
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->id(),
                 'booking_id' => $request->get('Booking'),
                 'invoice_id' => $id,
                 'item' => $name,
@@ -240,7 +240,7 @@ class InvoiceController extends Controller
         //return Response()->json($sql);
        
         $invoices = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'title' => $request->get('Description'),
             'date' => $request->get('Date'),
             'discount' => $request->get('Discount'),

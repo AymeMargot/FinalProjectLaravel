@@ -149,7 +149,7 @@ class VehiclePartController extends Controller
             'vehicletype_id' => $request->get('vehicletype_id'),
             'stock' => $request->get('Stock'),
             'price' => $request->get('Price'),            
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->id()
         ];
        
         $found = Vehicle_Part::findOrfail($request->vehiclepart_id);

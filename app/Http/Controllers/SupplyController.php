@@ -42,7 +42,7 @@ class SupplyController extends Controller
     public function store(Request $request)
     {
         $supplies = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'name' => $request->get('Name'),
             'price' => $request->get('Price'),    
             'stock' => $request->get('Stock'),         
@@ -91,7 +91,7 @@ class SupplyController extends Controller
     public function update(Request $request,  $id)
     {
         $supplies = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'name' => $request->get('Name'),
             'price' => $request->get('Price'),    
             'stock' => $request->get('Stock'),         

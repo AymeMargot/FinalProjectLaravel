@@ -64,7 +64,7 @@ class InvoiceSupplyController extends Controller
              
         $subtotal = $totalPrice - $discount;
         $invoice_supplies = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'supply_id' => $request->get('supply_id'),
             'invoice_id' => $request->get('invoice_id'),
             'item' =>$name,

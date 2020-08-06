@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\loadData;
 use App\Role;
 use App\Setting;
+use App\Supply;
 use App\User;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LoadDataController extends Controller
 {
@@ -23,20 +25,23 @@ class LoadDataController extends Controller
 
     public function load(){
 
+        $data = [];
+        for($i = 0;$i < 50; $i++){
+            $name = Str::random(30);
+            $data[]=[
+                'name'=> $name,
+                'price'=> rand(11,350),
+                'stock'=> rand(100,500),
+                'offer'=> 'NO',
+                'photo'=> '',
+                'created_at'=>now()->toDateTimeString(),
+                'updated_at'=>now()->toDateTimeString()
+            ];
+        }
 
-     //   $users = collect(User::all()->modelKeys());
-  /*      $settings = [
-            'name' => 'assistant'                         
-        ];
-        
-        if(Role::insert($settings))
-            echo "insert successfully";
-        
-*/
-        $settings = [];
-      
-        Role::findOrfail(3)->delete();
-        return view('load_data.index',$settings);
+        foreach($data as $dat){
+            Supply::insert($dat);
+        }
     }
 
     /**

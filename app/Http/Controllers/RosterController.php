@@ -74,7 +74,7 @@ class RosterController extends Controller
         $sw = true;
         while (($dayAfter < $to || $dayAfter == $to) && $sw) {
             $roster = [
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->id(),
                 'workload' => '0',
                 'staff_id' => $request->get('staff_id'),
                 'fromTime' => $request->get('FromTime'),
@@ -105,7 +105,7 @@ class RosterController extends Controller
      */
     public function show()
     {
-        $user = auth()->user()->id;
+        $user = auth()->id();
         $data['users'] = Staff::where('id','=',$user)->first();
         $data['rosters'] = Roster::select('rosters.*', 'bookings.id as book', 'bookings.description', 'bookings.status')
             ->leftJoin('bookings', 'rosters.id', '=', 'bookings.roster_id')
@@ -120,7 +120,7 @@ class RosterController extends Controller
         if ($rosters->get('staff_id') != '')
             $user = $rosters->get('staff_id');
         else
-            $user = auth()->user()->id;
+            $user = auth()->id();
         $data['users'] = Staff::where('id','=',$user)->first();
         $data['rosters'] = Roster::select('rosters.*', 'bookings.id as book', 'bookings.description', 'bookings.status')
             ->leftJoin('bookings', 'rosters.id', '=', 'bookings.roster_id')
@@ -153,7 +153,7 @@ class RosterController extends Controller
     public function update(Request $request)
     {
         $rosters = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'date' => $request->get('Date'),
             'staff_id' => $request->get('staff_id'),
             'fromTime' => $request->get('FromTime'),

@@ -60,7 +60,7 @@ class InvoiceVehiclepartController extends Controller
               
         $subtotal = $totalPrice - $discount;
         $invoice_vehiclepart = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'vehiclepart_id' => $request->get('vehiclepart_id'),
             'invoice_id' => $request->get('invoice_id'),
             'item' =>$name,

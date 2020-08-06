@@ -54,7 +54,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $make = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'name' => $request->get('Name')                        
         ];
         
@@ -100,7 +100,7 @@ class BrandController extends Controller
     public function update(Request $request,  $id)
     {
         $make = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'name' => $request->get('Name'),                      
         ];
        

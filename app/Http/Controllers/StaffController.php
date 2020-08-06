@@ -82,7 +82,7 @@ class StaffController extends Controller
         ]);
 
         $staff = [
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'name' => $request->get('Name'),
             'lastname' => $request->get('Lastname'),    
             'position' => $request->get('Position'),         
@@ -150,7 +150,7 @@ class StaffController extends Controller
         }
         
         $staff = [
-           'user_id' => auth()->user()->id,
+           'user_id' => auth()->id(),
            'name' => $request->get('Name'),
            'lastname' => $request->get('Lastname'),    
            'position' => $position,         
