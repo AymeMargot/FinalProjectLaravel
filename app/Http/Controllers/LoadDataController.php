@@ -42,7 +42,7 @@ class LoadDataController extends Controller
             'updated_at'=>now()->toDateTimeString(),
         ];
         Setting::insert($data);
-        */
+       
         $data = [];
         for($i = 0;$i < 50; $i++){
             $name = Str::random(30);
@@ -61,7 +61,8 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Supply::insert($dat);
         }
-        
+        */ 
+        $data = [];
         $array = ['Motorbikes','Car','Van','Small Buses','Others'];
         for($i = 0;$i < count($array) ; $i++){
             $name = $array[$i];
@@ -77,7 +78,7 @@ class LoadDataController extends Controller
             Vehicle_type::insert($dat);
         }
         
-
+        $data = [];
         $array = ['Honda','Toyota','Audi','Kia','Hyundai','Suzuki','Jeep','Ford','Mercedes Benz','Nissan','Mitsubishi','Mazda','Acura','Other'];
         for($i = 0;$i < count($array) ; $i++){
             $name = $array[$i];
@@ -93,6 +94,7 @@ class LoadDataController extends Controller
             Brand::insert($dat);
         }
         
+        $data = [];
         $brands = collect(Brand::all()->modelKeys());
         $vehicletype = collect(Vehicle_type::all()->modelKeys());
         for($i = 0;$i < 50; $i++){
@@ -113,7 +115,8 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             Vehicle_Part::insert($dat);
         }
-        
+
+        $data = [];        
         $array = ['Annual Service','Major Service','Repair / Fault and'];
         $prices = [189,200,345];
         $values = [1,2,1];
@@ -141,7 +144,8 @@ class LoadDataController extends Controller
         foreach($data as $dat){
             BookingType::insert($dat);
         }
-    
+        
+        $data = [];
         for($i = 0;$i < 50; $i++){
             $name = Str::random(30);
             $data[]=[
