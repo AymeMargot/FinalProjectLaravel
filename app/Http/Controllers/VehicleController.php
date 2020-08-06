@@ -58,7 +58,7 @@ class VehicleController extends Controller
             'name' => $request->get('Name'),
             'brand' => $request->get('Brand'),
             'engine' => $request->get('Engine'),
-            'user' => auth()->id()
+            'user_id' => auth()->id()
         ];
        // $vehicles = $request->except(['_token']);
         if(Vehicle::insert( $vehicles))
