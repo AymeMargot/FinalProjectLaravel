@@ -102,16 +102,23 @@ class VehiclePartController extends Controller
      */
     public function store(Request $request)
     {
-        $vehicle_parts = $request->except(['_token']);
+        $vehicle_parts = [
+            'name' => $request->get('Name'),
+            'brand_id'=> $request->get('brand_id'),
+            'vehicletype_id' => $request->get('vehicletype_id'),
+            'stock' => $request->get('Stock'),
+            'price' => $request->get('Price'),            
+            'user_id' => auth()->id()                   
+        ];
         
         if($request->hasFile('Photo')){
-            $vehicle_parts['Photo']=$request->file('Photo')->store('vehiclePartsUploads','public');
+            $vehicle_parts['photo']=$request->file('Photo')->store('vehiclePartsUploads','public');
         }
-        
-        if(Vehicle_Part::insert( $vehicle_parts))
-            return redirect('vehicles_parts')->with('success','Part added successfuly');
-         else
-            return redirect('vehicles_parts')->with('error','Something is wrong, try later');
+
+        if(Vehicle_Part::insert($vehicle_parts))
+            return redirect('vehicles_parts')->with('success','The accessory was added successfully');
+        else
+            return redirect('vehicles_parts')->with('error','Something is going wrong, try later');
             
     }
 

@@ -38,6 +38,7 @@ Route::get('/bookings/delete/{id}', ['as' => 'id', 'uses' => 'BookingController@
 Route::get('/rosterSearch', 'RosterController@search');
 Route::get('/rosterUserSearch', 'RosterController@UserSearch');
 Route::resource('/accessories', 'AccessoryController');
+Route::get('/accessorySearch', 'AccessoryController@search');
 Route::resource('/vehicles_parts', 'VehiclePartController');
 Route::get('/vehiclePartSearch', 'VehiclePartController@search');
 Route::resource('/invoices', 'InvoiceController'); 

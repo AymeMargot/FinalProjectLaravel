@@ -19,8 +19,16 @@ class AccessoryController extends Controller
     public function index()
     {
         $data['accessories'] = accessory::paginate(5);         
-        return view('accessories.index',$data);
-       
+        return view('accessories.index',$data);       
+    }
+
+    public function search(Request $accessories){        
+        $find = $accessories->get('Find');
+        if($find == 'all')
+            $find='';
+
+        $data['accessories'] = accessory::where('name','like','%'.$find.'%')->paginate(5);
+        return view('accessories.index', $data);
     }
 
     public function list()
@@ -48,16 +56,21 @@ class AccessoryController extends Controller
      */
     public function store(Request $request)
     {      
-        $accessories = $request->except(['_token']);
+        $accessories = [
+            'user_id' => auth()->id(),
+            'name' => $request->get('Name'),
+            'price' => $request->get('Price'),    
+            'stock' => $request->get('Stock')                    
+        ];
         
         if($request->hasFile('Photo')){
-            $accessories['Photo']=$request->file('Photo')->store('accessoriesUploads','public');
+            $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
         }
-        
-        accessory::insert( $accessories);
-        return redirect('accessories')->with('Mensaje','Accessory added successfuly');
- 
-        //return response()->json($accessories);
+
+        if(accessory::insert($accessories))
+            return redirect('accessories')->with('success','The accessory was added successfully');
+        else
+            return redirect('accessories')->with('error','Something is going wrong, try later');
     }
 
     /**
@@ -99,20 +112,28 @@ class AccessoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $accessories = $request->except(['_token','_method']);
+        $accessories = [
+            'user_id' => auth()->id(),
+            'name' => $request->get('Name'),
+            'price' => $request->get('Price'),    
+            'stock' => $request->get('Stock')                   
+        ];
+       
+        $found = accessory::findOrfail($request->get('accessory_id'));
+            
+        if($found){           
+            if($request->hasFile('Photo')){
+                Storage::delete('public/'.$found->photo);
+                $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
+            }
 
-        if($request->hasFile('Photo')){
-
-            $accessoriesfind = accessory::findOrFail($id);
-            Storage::delete('public/'.$accessoriesfind->photo);
-
-            $accessories['Photo']=$request->file('Photo')->store('accessoriesUploads','public');
+            if(accessory::where('id','=',$found->id)->update($accessories))
+                return redirect('accessories')->with('success','Accessory updated successfuly');
+            else    
+                return redirect('accessories')->with('error','Something is wrong, try later');
         }
-
-        accessory::where('id','=',$id)->update($accessories);
-      //  $accessories = accessory::findOrFail($id);
-      //    return view('accessories.edit',compact('accessories'));  
-        return redirect('accessories')->with('Mensaje','Accessory updated successfuly');
+        return redirect('accessories')->with('error','Accessory not found, try again');   
+    
        
     }
 
@@ -122,15 +143,13 @@ class AccessoryController extends Controller
      * @param  \App\accessory  $accessory
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $accessories)
     {
-        $accessoriesfind = accessory::findOrFail($id);
-        if(Storage::delete('public/'.$accessoriesfind->photo)){
-            accessory::destroy($id);    
-        }
-
-      //  accessory::destroy($id);
-          return redirect('accessories')->with('Mensaje','Accessory deletedc successfuly');
+        $delete= accessory::findOrfail($accessories->get('accessory_id'))->delete();
+        if($delete)
+            return redirect('accessories')->with('success','Accessory deleted successfuly');
+        else    
+            return redirect('accessories')->with('error','Something is wrong, try later');
  
     }
 }
