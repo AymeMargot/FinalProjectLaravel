@@ -56,6 +56,7 @@ Route::get('/supplySearch', 'SupplyController@search');
 Route::resource('/makes', 'BrandController');
 Route::get('/makeSearch', 'BrandController@search');
 Route::delete('/deleteAll','BrandController@deleteAll');
+Route::resource('/messages', 'MessageController');
 
 Route::get('/loadData', 'LoadDataController@load');
 //========================================================================================================

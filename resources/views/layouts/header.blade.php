@@ -17,6 +17,7 @@
               <li><a class="dropdown-item" href="{{ url('/supplies') }}">Manage Supplies</a></li>
               <li><a class="dropdown-item" href="{{ url('/makes') }}">Manage Makes</a></li>
               <li><a class="dropdown-item" href="{{ url('/vehicles_parts') }}">Manage Vehicle Parts</a></li>
+              <li><a class="dropdown-item" href="{{ url('/messages') }}">Customers Feedback</a></li>
               <hr>
               <li> <a class="dropdown-item" href="{{ url('/bookings') }}">Manage Bookings</a></li>
               <li> <a class="dropdown-item" href="{{ url('/invoices') }}">Manage Invoices</a></li>
