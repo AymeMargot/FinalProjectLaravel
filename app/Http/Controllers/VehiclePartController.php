@@ -154,9 +154,9 @@ class VehiclePartController extends Controller
             'price' => $request->get('Price'),            
             'user_id' => auth()->id()
         ];
-       
-        $found = Vehicle_Part::findOrfail($request->vehiclepart_id);
-    
+        echo "IDD".$request->vehiclepart_id;
+        return response()->json($vehicle_parts);
+        $found = Vehicle_Part::findOrfail($request->vehiclepart_id);    
         
         if($found){           
             if($request->hasFile('Photo')){
