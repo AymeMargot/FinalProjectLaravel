@@ -114,7 +114,7 @@
               <a href="{{ asset('storage').'/'. $supply->photo }}" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
             </div>
-            <h5>{{ $supply->name}}</h5>
+            <p class="font-italic">{{ $supply->name}}</p>
           </div>
         </div>
         @endforeach
@@ -129,7 +129,7 @@
               <a href="{{ asset('storage').'/'. $accessory->photo }}" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
             </div>
-            <h5>{{ $accessory->name}}</h5>
+            <p class="font-italic">{{ $accessory->name}}</p>
           </div>
         </div>
         @endforeach
@@ -144,7 +144,7 @@
               <a href="{{ asset('storage').'/'. $part->photo }}" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
             </div>
-            <h5>{{ $part->name}}</h5>
+            <p class="font-italic">{{ $part->name}}</p>
           </div>
         </div>
         @endforeach
@@ -233,8 +233,7 @@
           </div>
         </div>
         <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-left">
-          <form action="/messages" method="post" role="form" class="php-email-form">
-            
+          <form action="/messages" method="post" role="form" class="php-email-form">            
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="name">Your Name</label>
