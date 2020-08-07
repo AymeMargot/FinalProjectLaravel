@@ -69,7 +69,7 @@
 			<form action="{{ url('/accessories') }}" method="post" enctype="multipart/form-data">
 				@csrf
 				<div class="modal-header btn btn-primary">
-					<h4 class="modal-title">Add Supply</h4>
+					<h4 class="modal-title">Add Accessory</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -108,7 +108,7 @@
 				@csrf
 				@method('PUT')
 				<div class="modal-header btn btn-primary">
-					<h4 class="modal-title">Edit Supply</h4>
+					<h4 class="modal-title">Edit Accessory</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -173,7 +173,7 @@
 		var stock = $(event.relatedTarget).data().stock		
 		
 		var modal = $(this)
-		modal.find('.modal-title').text('Edit Supply')
+		modal.find('.modal-title').text('Edit Accessory')
 		modal.find('.modal-body #accessory_id').val(id)
 		modal.find('.modal-body #Name').val(name)
 		modal.find('.modal-body #Price').val(price)
