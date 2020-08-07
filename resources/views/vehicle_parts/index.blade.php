@@ -92,7 +92,7 @@
 									<option value="{{  $make->id }}" class="dropdown-item">{{ $make->name }}</option>
 									@endforeach
 								</select>
-								<input type="hidden" name="user_id" value="{{ auth()->id() }}">
+								
 							</div>
 						</div>
 						<div class="form-group">
@@ -150,8 +150,7 @@
 									@foreach($makes as $make)
 									<option value="{{  $make->id }}" class="dropdown-item">{{ $make->name }}</option>
 									@endforeach
-								</select>
-								<input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+								</select>								
 							</div>
 						</div>
 						<div class="form-group">
