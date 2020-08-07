@@ -105,7 +105,7 @@
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
         @foreach($supplies as $supply)
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
+          <div class="portfolio-wrap">            
             <img src="{{ asset('storage').'/'. $supply->photo }}" class="img-fluid rounded" width="200" height="150" alt="">
             <div class="portfolio-info">
               <h4>{{ $supply->name}}</h4>
@@ -114,6 +114,7 @@
               <a href="{{ asset('storage').'/'. $supply->photo }}" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
             </div>
+            <h5>{{ $supply->name}}</h5>
           </div>
         </div>
         @endforeach
@@ -128,6 +129,7 @@
               <a href="{{ asset('storage').'/'. $accessory->photo }}" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
             </div>
+            <h5>{{ $accessory->name}}</h5>
           </div>
         </div>
         @endforeach
@@ -142,6 +144,7 @@
               <a href="{{ asset('storage').'/'. $part->photo }}" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
             </div>
+            <h5>{{ $part->name}}</h5>
           </div>
         </div>
         @endforeach
@@ -231,7 +234,7 @@
         </div>
         <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-left">
           <form action="/messages" method="post" role="form" class="php-email-form">
-            @csrf
+            
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="name">Your Name</label>
