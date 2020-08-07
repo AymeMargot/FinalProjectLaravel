@@ -62,7 +62,7 @@
     <div class="alert alert-danger" role="alert">You should be registered as staff</div>
     @endif
     <br>
-    @if(empty($rosters))
+    @if(!empty($rosters))
     <table class="table table-striped table-hover table-bordered">
         <thead>
             <tr class="text-primary">
