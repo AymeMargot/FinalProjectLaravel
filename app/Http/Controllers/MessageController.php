@@ -19,6 +19,17 @@ class MessageController extends Controller
         return view('messages.index',$data);
     }
 
+    public function search(Request $messages){       
+        
+        $find = $messages->get('Find');
+        if($find == 'all')
+            $find='';
+      //  echo 'find'.$find;
+        $data['messages'] = Message::where('name','like','%'.$find.'%')->paginate(5);
+        return view('messages.index', $data);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
