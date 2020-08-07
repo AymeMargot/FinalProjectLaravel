@@ -49,9 +49,9 @@
 						<td><img src="{{ asset('storage').'/'. $vehicle_part->photo }}" alt="" width="50" class="rounded-circle"></td>
 						<td>
 							<!-- button edit-->
-							<a data-vehiclepart_id="{{$vehicle_part->id}}" id="#btnedit" data-name="{{$vehicle_part->name}}" data-make_id="{{$vehicle_part->make_id}}" data-vehicletype_id="{{$vehicle_part->vehicletype_id}}" data-stock="{{$vehicle_part->stock}}" data-price="{{$vehicle_part->price}}" data-target="#editVehiclePart" type="button" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a data-id="{{$vehicle_part->id}}" id="#btnedit" data-name="{{$vehicle_part->name}}" data-make_id="{{$vehicle_part->make_id}}" data-vehicletype_id="{{$vehicle_part->vehicletype_id}}" data-stock="{{$vehicle_part->stock}}" data-price="{{$vehicle_part->price}}" data-target="#editVehiclePart" type="button" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<!-- end edit -->
-							<a data-vehiclepart_id="{{$vehicle_part->id}}" data-name="{{$vehicle_part->name}}" type="button" href="#deleteVehiclePart" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a data-id="{{$vehicle_part->id}}" data-name="{{$vehicle_part->name}}" type="button" href="#deleteVehiclePart" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 					@endforeach
@@ -214,7 +214,7 @@
 			var price = $(event.relatedTarget).data().price
 			var vehicletype_id = $(event.relatedTarget).data().vehicletype_id
 			var make_id = $(event.relatedTarget).data().make_id
-			var vehiclepart_id = $(event.relatedTarget).data().vehiclepart_id
+			var vehiclepart_id = $(event.relatedTarget).data().id
 
 			//$("#brand_id").prop("selectedIndex", make).val(make_id)
 			//$("#vehicletype_id").prop("selectedIndex", vehicletype).val(vehicletype_id)
@@ -225,10 +225,11 @@
 			modal.find('.modal-body #Price').val(price)
 			modal.find('.modal-body #brand_id').val(make_id)
 			modal.find('.modal-body #vehicletype_id').val(vehicletype_id)
+			modal.find('.modal-body #vehiclepart_id').val(vehiclepart_id)
 		})
 		$('#deleteVehiclePart').on('show.bs.modal', function(event) {
 
-			var vehiclepart_id = $(event.relatedTarget).data().vehiclepart_id
+			var vehiclepart_id = $(event.relatedTarget).data().id
 			var name = $(event.relatedTarget).data().name
 			var modal = $(this)
 			modal.find('.modal-body #vehiclepart_id').val(vehiclepart_id)
