@@ -129,7 +129,7 @@
 					</div>				
 					<div class="form-group">
 						<label>Photo</label>
-						<input type="file" name="Photo" class="form-control">
+						<input type="file" name="Photo" class="form-control" required>
 					</div>
 				</div>
 				<div class="modal-footer btn btn-light">
