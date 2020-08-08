@@ -116,10 +116,9 @@ class VehiclePartController extends Controller
         }
 
         if(Vehicle_Part::insert($vehicle_parts))
-            return redirect('vehicles_parts')->with('success','The accessory was added successfully');
+            return redirect('vehicles_parts')->with('success','The Vehicle part was added successfully');
         else
-            return redirect('vehicles_parts')->with('error','Something is going wrong, try later');
-            
+            return redirect('vehicles_parts')->with('error','Something is going wrong, try later');            
     }
 
     /**
@@ -161,8 +160,7 @@ class VehiclePartController extends Controller
             'price' => $request->get('Price'),            
             'user_id' => auth()->id()
         ];
-     //   echo "IDD".$request->vehiclepart_id;
-   //     return response()->json($vehicle_parts);
+     
         $found = Vehicle_Part::findOrfail($request->vehiclepart_id);    
         
         if($found){           

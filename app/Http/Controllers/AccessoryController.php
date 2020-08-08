@@ -60,17 +60,18 @@ class AccessoryController extends Controller
             'user_id' => auth()->id(),
             'name' => $request->get('Name'),
             'price' => $request->get('Price'),    
-            'stock' => $request->get('Stock')                    
+            'stock' => $request->get('Stock')                   
         ];
-        
+       
         if($request->hasFile('Photo')){
+            Storage::delete('public/'.$request->get('Photo'));
             $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
         }
 
         if(accessory::insert($accessories))
-            return redirect('accessories')->with('success','The accessory was added successfully');
-        else
-            return redirect('accessories')->with('error','Something is going wrong, try later');
+            return redirect('accessories')->with('success','Accessory added successfuly');
+        else    
+            return redirect('accessories')->with('error','Something is wrong, try later');             
     }
 
     /**

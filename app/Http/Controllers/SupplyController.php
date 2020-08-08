@@ -46,17 +46,18 @@ class SupplyController extends Controller
             'name' => $request->get('Name'),
             'price' => $request->get('Price'),    
             'stock' => $request->get('Stock'),         
-            'offer' => $request->get('Offer')            
+            'offer' => $request->get('Offer')           
         ];
-        
+       
         if($request->hasFile('Photo')){
+            Storage::delete('public/'.$request->get('Photo'));
             $supplies['photo']=$request->file('Photo')->store('suppliesUploads','public');
         }
 
         if(Supply::insert($supplies))
-            return redirect('supplies')->with('success','The supply was added successfully');
-        else
-            return redirect('supplies')->with('error','Something is going wrong, try later');
+            return redirect('supplies')->with('success','Supply added successfuly');
+        else    
+            return redirect('supplies')->with('error','Something is wrong, try later');              
     }
 
     /**
