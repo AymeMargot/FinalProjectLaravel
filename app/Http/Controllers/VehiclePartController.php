@@ -105,7 +105,7 @@ class VehiclePartController extends Controller
         $photo = "";
         if($request->hasFile('Photo')){
             $vehicle_parts['photo']=$request->file('Photo')->store('vehiclePartsUploads','public');
-            $photo=$request->get('Photo'); 
+            $photo = $request->file('Photo');  
         }
 
         $vehicle_parts = [
@@ -161,7 +161,7 @@ class VehiclePartController extends Controller
             if($request->hasFile('Photo')){
                 Storage::delete('public/'.$found->photo);
                 $vehicle_parts['photo']=$request->file('Photo')->store('vehiclePartsUploads','public');
-                $photo=$request->get('Photo'); 
+                $photo = $request->file('Photo'); 
             }
 
             $vehicle_parts = [            

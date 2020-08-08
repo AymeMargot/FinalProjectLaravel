@@ -60,7 +60,7 @@ class AccessoryController extends Controller
         if($request->hasFile('Photo')){
             Storage::delete('public/'.$request->get('Photo'));
             $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
-            $photo=$request->get('Photo');
+            $photo = $request->file('Photo'); 
         }
 
         $accessories = [
@@ -123,7 +123,7 @@ class AccessoryController extends Controller
             if($request->hasFile('Photo')){
                 Storage::delete('public/'.$found->photo);
                 $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
-                $photo=$request->get('Photo');
+                $photo = $request->file('Photo'); 
             }
 
             $accessories = [
