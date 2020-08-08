@@ -40,19 +40,22 @@ class SupplyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $photo = "";       
+        if($request->hasFile('Photo')){
+            Storage::delete('public/'.$request->get('Photo'));
+            $supplies['photo']=$request->file('Photo')->store('suppliesUploads','public');
+            $photo=$request->get('Photo'); 
+        }
+
         $supplies = [
             'user_id' => auth()->id(),
             'name' => $request->get('Name'),
             'price' => $request->get('Price'),    
             'stock' => $request->get('Stock'),         
-            'offer' => $request->get('Offer')           
+            'offer' => $request->get('Offer'),
+            'photo' => $photo           
         ];
-       
-        if($request->hasFile('Photo')){
-            Storage::delete('public/'.$request->get('Photo'));
-            $supplies['photo']=$request->file('Photo')->store('suppliesUploads','public');
-        }
 
         if(Supply::insert($supplies))
             return redirect('supplies')->with('success','Supply added successfuly');
@@ -91,21 +94,24 @@ class SupplyController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        $supplies = [
-            'user_id' => auth()->id(),
-            'name' => $request->get('Name'),
-            'price' => $request->get('Price'),    
-            'stock' => $request->get('Stock'),         
-            'offer' => $request->get('Offer')           
-        ];
-       
         $found = Supply::findOrfail($request->get('supply_id'));
-            
-        if($found){           
+        $photo="";    
+        if($found){
+                       
             if($request->hasFile('Photo')){
                 Storage::delete('public/'.$found->photo);
                 $supplies['photo']=$request->file('Photo')->store('suppliesUploads','public');
+                $photo=$request->get('Photo'); 
             }
+
+            $supplies = [
+                'user_id' => auth()->id(),
+                'name' => $request->get('Name'),
+                'price' => $request->get('Price'),    
+                'stock' => $request->get('Stock'),         
+                'offer' => $request->get('Offer'),
+                'photo' => $photo           
+            ];
 
             if(Supply::where('id','=',$found->id)->update($supplies))
                 return redirect('supplies')->with('success','Supply updated successfuly');

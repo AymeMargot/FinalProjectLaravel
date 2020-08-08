@@ -52,15 +52,18 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $make = [
-            'user_id' => auth()->id(),
-            'name' => $request->get('Name')                        
-        ];
-        
+    {        
+        $photo = "";
         if($request->hasFile('Photo')){
             $make['photo']=$request->file('Photo')->store('makesUploads','public');
+            $photo=$request->get('Photo');            
         }
+
+        $make = [
+            'user_id' => auth()->id(),
+            'name' => $request->get('Name'),
+            'photo' => $photo                       
+        ];
 
         if(Brand::insert($make))
             return redirect('makes')->with('success','The make was added successfully');
@@ -98,19 +101,21 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,  $id)
-    {
-        $make = [
-            'user_id' => auth()->id(),
-            'name' => $request->get('Name'),                      
-        ];
-       
+    {       
         $found = Brand::findOrfail($request->get('make_id'));
-            
+        $photo = "";    
         if($found){           
             if($request->hasFile('Photo')){
                 Storage::delete('public/'.$found->photo);
                 $make['photo']=$request->file('Photo')->store('makesUploads','public');
+                $photo=$request->get('Photo');  
             }
+
+            $make = [
+                'user_id' => auth()->id(),
+                'name' => $request->get('Name'),  
+                'photo' => $photo                    
+            ];
 
             if(Brand::where('id','=',$found->id)->update($make))
                 return redirect('makes')->with('success','Make updated successfuly');

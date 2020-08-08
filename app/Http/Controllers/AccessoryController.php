@@ -56,17 +56,20 @@ class AccessoryController extends Controller
      */
     public function store(Request $request)
     {      
+        $photo="";
+        if($request->hasFile('Photo')){
+            Storage::delete('public/'.$request->get('Photo'));
+            $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
+            $photo=$request->get('Photo');
+        }
+
         $accessories = [
             'user_id' => auth()->id(),
             'name' => $request->get('Name'),
             'price' => $request->get('Price'),    
-            'stock' => $request->get('Stock')                   
-        ];
-       
-        if($request->hasFile('Photo')){
-            Storage::delete('public/'.$request->get('Photo'));
-            $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
-        }
+            'stock' => $request->get('Stock'),
+            'photo' => $photo                  
+        ];        
 
         if(accessory::insert($accessories))
             return redirect('accessories')->with('success','Accessory added successfuly');
@@ -112,30 +115,31 @@ class AccessoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $accessories = [
-            'user_id' => auth()->id(),
-            'name' => $request->get('Name'),
-            'price' => $request->get('Price'),    
-            'stock' => $request->get('Stock')                   
-        ];
-       
+    {             
         $found = accessory::findOrfail($request->get('accessory_id'));
-            
+        $photo=""; 
+
         if($found){           
             if($request->hasFile('Photo')){
                 Storage::delete('public/'.$found->photo);
                 $accessories['photo']=$request->file('Photo')->store('accessoriesUploads','public');
+                $photo=$request->get('Photo');
             }
+
+            $accessories = [
+                'user_id' => auth()->id(),
+                'name' => $request->get('Name'),
+                'price' => $request->get('Price'),    
+                'stock' => $request->get('Stock'),
+                'photo' => $photo                   
+            ];
 
             if(accessory::where('id','=',$found->id)->update($accessories))
                 return redirect('accessories')->with('success','Accessory updated successfuly');
             else    
                 return redirect('accessories')->with('error','Something is wrong, try later');
         }
-        return redirect('accessories')->with('error','Accessory not found, try again');   
-    
-       
+        return redirect('accessories')->with('error','Accessory not found, try again');        
     }
 
     /**

@@ -101,19 +101,22 @@ class VehiclePartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
+        $photo = "";
+        if($request->hasFile('Photo')){
+            $vehicle_parts['photo']=$request->file('Photo')->store('vehiclePartsUploads','public');
+            $photo=$request->get('Photo'); 
+        }
+
         $vehicle_parts = [
             'name' => $request->get('Name'),
             'brand_id'=> $request->get('brand_id'),
             'vehicletype_id' => $request->get('vehicletype_id'),
             'stock' => $request->get('Stock'),
             'price' => $request->get('Price'),            
-            'user_id' => auth()->id()                   
+            'user_id' => auth()->id(),
+            'photo' => $photo                   
         ];
-        
-        if($request->hasFile('Photo')){
-            $vehicle_parts['photo']=$request->file('Photo')->store('vehiclePartsUploads','public');
-        }
 
         if(Vehicle_Part::insert($vehicle_parts))
             return redirect('vehicles_parts')->with('success','The Vehicle part was added successfully');
@@ -151,31 +154,32 @@ class VehiclePartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,  $id)
-    {
-        $vehicle_parts = [            
-            'name' => $request->get('Name'),
-            'brand_id'=> $request->get('brand_id'),
-            'vehicletype_id' => $request->get('vehicletype_id'),
-            'stock' => $request->get('Stock'),
-            'price' => $request->get('Price'),            
-            'user_id' => auth()->id()
-        ];
-     
-        $found = Vehicle_Part::findOrfail($request->vehiclepart_id);    
-        
+    { 
+        $found = Vehicle_Part::findOrfail($request->vehiclepart_id);
+        $photo="";         
         if($found){           
             if($request->hasFile('Photo')){
                 Storage::delete('public/'.$found->photo);
                 $vehicle_parts['photo']=$request->file('Photo')->store('vehiclePartsUploads','public');
+                $photo=$request->get('Photo'); 
             }
+
+            $vehicle_parts = [            
+                'name' => $request->get('Name'),
+                'brand_id'=> $request->get('brand_id'),
+                'vehicletype_id' => $request->get('vehicletype_id'),
+                'stock' => $request->get('Stock'),
+                'price' => $request->get('Price'),            
+                'user_id' => auth()->id(),
+                'photo' =>$photo
+            ];
 
             if(Vehicle_Part::where('id','=',$found->id)->update($vehicle_parts))
                 return redirect('vehicles_parts')->with('success','Part updated successfuly');
             else    
                 return redirect('vehicles_parts')->with('error','Something is wrong, try later');
         }
-        return redirect('vehicles_parts')->with('error','Item not found, try again');
-        
+        return redirect('vehicles_parts')->with('error','Item not found, try again');        
     }
 
     /**
