@@ -45,7 +45,7 @@ class SupplyController extends Controller
         if($request->hasFile('Photo')){
             Storage::delete('public/'.$request->get('Photo'));
             $supplies['photo']=$request->file('Photo')->store('suppliesUploads','public');
-            $photo = $request->$request->file('Photo'); 
+            $photo = $request->file('Photo'); 
         }
 
         $supplies = [
